@@ -30,6 +30,17 @@ each position and updates the overall maximum as needed.
     - Update `max_global` if `max_current` is greater.
 3. Return `max_global` as the result.
 
+### Intuition
+- Imagine walking through the array and keeping track of the maximum sum of the subarray ending at each position
+- At each step, we ask ourselves:
+    - Is adding the current element to the current sum result in greater sum (positive number)/or reduce the subtraction from the current element (negative number)?
+    - Or is it better to start a new subarray from the current element?
+- Thus, we have two options:
+    - The current element itself
+    - The sum of the current element and the previous maximum sum
+- We choose the option that gives us the maximum sum.
+- But because we may forget the previous maximum sum, we must find a way to keep track of it.
+
 ### Pseudocode
 
 ```

@@ -3,3 +3,4 @@ mod s0070_climbing_stairs;
 mod s0509_fibonacci_number;
 mod s0746_min_cost_climbing_stairs;
 mod s0053_maximum_subarray;
+mod s0918_maximum_sum_circular_subarray;
