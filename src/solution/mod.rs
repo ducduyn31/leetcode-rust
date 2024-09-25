@@ -6,3 +6,4 @@ mod s0053_maximum_subarray;
 mod s0918_maximum_sum_circular_subarray;
 mod s0152_maximum_product_subarray;
 mod s0416_partition_equal_subset_sum;
+mod s0494_target_sum;
