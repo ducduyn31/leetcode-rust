@@ -5,3 +5,4 @@ mod s0746_min_cost_climbing_stairs;
 mod s0053_maximum_subarray;
 mod s0918_maximum_sum_circular_subarray;
 mod s0152_maximum_product_subarray;
+mod s0416_partition_equal_subset_sum;
