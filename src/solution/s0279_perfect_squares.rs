@@ -36,36 +36,26 @@ pub struct Solution {}
 
 impl Solution {
     pub fn num_squares(n: i32) -> i32 {
-        let mut dp: Vec<i32> = vec![n; (n + 1) as usize];
-        let mut perfect_squares: Vec<i32> = Vec::new();
-        let mut queue: VecDeque<i32> = VecDeque::new();
-
-        for i in 1..n {
-            if i * i <= n {
-                perfect_squares.push(i * i);
-                queue.push_back(i * i);
-                dp[(i * i) as usize] = 1;
-            } else {
-                break;
-            }
-        }
-
-        if dp[n as usize] == 1 {
-            return 1;
-        }
-
-        while let Some(item) = queue.pop_front() {
-            for k in &perfect_squares {
-                if item + k == n {
-                    return dp[item as usize] + 1;
-                } else if item + k < n && dp[(item + k) as usize] > dp[item as usize] + 1 {
-                    dp[(item + k) as usize] = dp[item as usize] + 1;
-                    queue.push_back(item + k);
+        let mut queue = VecDeque::new();
+        queue.push_back((n, 0));
+        let mut visited = vec![false; n as usize + 1];
+        visited[n as usize] = true;
+        while let Some((num, step)) = queue.pop_front() {
+            for i in 1.. {
+                let next = num - i * i;
+                if next < 0 {
+                    break;
+                }
+                if next == 0 {
+                    return step + 1;
+                }
+                if !visited[next as usize] {
+                    queue.push_back((next, step + 1));
+                    visited[next as usize] = true;
                 }
             }
         }
-
-        dp[n as usize]
+        0
     }
 }
 
