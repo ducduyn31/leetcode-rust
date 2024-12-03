@@ -1,7 +1,5 @@
 #![allow(dead_code)]
 
-use std::collections::HashMap;
-
 /**
  * [648] Replace Words
  *
@@ -41,61 +39,22 @@ pub struct Solution {}
 
 // submission codes start here
 
-struct TrieNode {
-    children: HashMap<char, TrieNode>,
-    is_end_of_word: bool,
-}
-
-impl TrieNode {
-    fn new() -> Self {
-        Self {
-            children: HashMap::new(),
-            is_end_of_word: false,
-        }
-    }
-}
-
 impl Solution {
-    pub fn replace_words(dictionary: Vec<String>, sentence: String) -> String {
-        let trie = Self::build_trie(dictionary);
+    pub fn replace_words(mut dictionary: Vec<String>, sentence: String) -> String {
+        dictionary.sort_by(|a, b| a.len().cmp(&b.len()));
 
         sentence
             .split_whitespace()
-            .map(|word| {
-                let mut current = &trie;
-                let mut replacement = None;
-
-                for (i, c) in word.chars().enumerate() {
-                    if let Some(child_node) = current.children.get(&c) {
-                        current = child_node;
-
-                        if current.is_end_of_word {
-                            replacement = Some(&word[..i + 1]);
-                            break;
-                        }
-                    } else {
-                        break;
+            .map(|mut word| {
+                for root in dictionary.iter() {
+                    if word.starts_with(root) {
+                        word = root
                     }
                 }
-
-                replacement.unwrap_or(word)
+                word
             })
-            .collect::<Vec<&str>>()
+            .collect::<Vec<_>>()
             .join(" ")
-    }
-
-    fn build_trie(dictionary: Vec<String>) -> TrieNode {
-        let mut root = TrieNode::new();
-
-        for word in dictionary {
-            let mut current = &mut root;
-            for c in word.chars() {
-                current = current.children.entry(c).or_insert_with(TrieNode::new);
-            }
-            current.is_end_of_word = true;
-        }
-
-        root
     }
 }
 
