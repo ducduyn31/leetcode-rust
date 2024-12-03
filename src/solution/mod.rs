@@ -12,3 +12,4 @@ mod s0322_coin_change;
 mod s0518_coin_change_ii;
 mod s0279_perfect_squares;
 mod s0209_minimum_size_subarray_sum;
+mod s0473_matchsticks_to_square;
